@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "build": "webpack build"
+  },
+  "dependencies": {
+    "@triply/yasgui": "^4.2.28"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "ts-loader": "^9.2.5",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+
+  }
+}

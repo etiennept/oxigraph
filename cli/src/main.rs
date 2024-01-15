@@ -36,6 +36,7 @@ use url::form_urlencoded;
 const MAX_SPARQL_BODY_SIZE: u64 = 0x0010_0000;
 const HTTP_TIMEOUT: Duration = Duration::from_secs(60);
 const HTML_ROOT_PAGE: &str = include_str!("../templates/query.html");
+const JAVASCRIPT_ROOT_PAGE : &str =  include_str!("../templates/query.js");
 const LOGO: &str = include_str!("../logo.svg");
 
 #[derive(Parser)]
@@ -981,6 +982,10 @@ fn handle_request(
             .with_header(HeaderName::CONTENT_TYPE, "text_html")
             .unwrap()
             .with_body(HTML_ROOT_PAGE)),
+        ("/index.js", "GET") => Ok(Response::builder(Status::OK)
+            .with_header(HeaderName::CONTENT_TYPE, "text/javascript")
+            .unwrap()
+            .with_body(JAVASCRIPT_ROOT_PAGE)),
         ("/logo.svg", "HEAD") => Ok(Response::builder(Status::OK)
             .with_header(HeaderName::CONTENT_TYPE, "image/svg+xml")
             .unwrap()

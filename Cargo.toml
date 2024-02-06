@@ -14,6 +14,7 @@ members = [
     "oxrocksdb-sys",
     "python",
     "cli",
+    "client_cli",
     "testsuite"
 ]
 resolver = "2"

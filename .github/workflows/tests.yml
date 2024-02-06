@@ -55,6 +55,8 @@ jobs:
       - run: cargo clippy --all-targets -- -D warnings -D clippy::all
         working-directory: ./cli
       - run: cargo clippy --all-targets -- -D warnings -D clippy::all
+        working-directory: ./client_cli
+      - run: cargo clippy --all-targets -- -D warnings -D clippy::all
         working-directory: ./testsuite
 
   clippy_wasm_js:
@@ -141,7 +143,7 @@ jobs:
         with:
           target: i686-unknown-linux-gnu
       - run: sudo apt-get update && sudo apt-get install -y g++-multilib
-      - run: cargo test --target i686-unknown-linux-gnu --no-default-features --features http-client-rustls-native
+      - run: cargo test --target i686-unknown-linux-gnu --no-default-features --features http-client_cli-rustls-native
         working-directory: ./lib
 
   test_linux_msv:
@@ -449,7 +451,7 @@ jobs:
           submodules: true
       - uses: ./.github/actions/setup-rust
       - run: cargo install cargo-codspeed || true
-      - run: cargo codspeed build -p oxigraph --features http-client-native-tls
+      - run: cargo codspeed build -p oxigraph --features http-client_cli-native-tls
       - run: cargo codspeed build -p oxigraph-testsuite
       - uses: CodSpeedHQ/action@v2
         with:

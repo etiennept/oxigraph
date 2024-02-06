@@ -35,8 +35,9 @@ use url::form_urlencoded;
 
 const MAX_SPARQL_BODY_SIZE: u64 = 0x0010_0000;
 const HTTP_TIMEOUT: Duration = Duration::from_secs(60);
-const HTML_ROOT_PAGE: &str = include_str!("../templates/query.html");
-const JAVASCRIPT_ROOT_PAGE : &str =  include_str!("../templates/query.js");
+const HTML_ROOT_PAGE: &str = include_str!("../client/index.html");
+const JAVASCRIPT_ROOT_PAGE : &str =  include_str!("../client/client.js") ;
+const WASM_ROOT_PAGE  :&[u8]  =  include_bytes!("../client/client_bg.wasm")  ;
 const LOGO: &str = include_str!("../logo.svg");
 
 #[derive(Parser)]
@@ -982,10 +983,14 @@ fn handle_request(
             .with_header(HeaderName::CONTENT_TYPE, "text_html")
             .unwrap()
             .with_body(HTML_ROOT_PAGE)),
-        ("/index.js", "GET") => Ok(Response::builder(Status::OK)
+        ("/client.js", "GET") => Ok(Response::builder(Status::OK)
             .with_header(HeaderName::CONTENT_TYPE, "text/javascript")
             .unwrap()
             .with_body(JAVASCRIPT_ROOT_PAGE)),
+        ("/client_bg.wasm", "GET") => Ok(Response::builder(Status::OK)
+            .with_header(HeaderName::CONTENT_TYPE, "application/wasm")
+            .unwrap()
+            .with_body(WASM_ROOT_PAGE)),
         ("/logo.svg", "HEAD") => Ok(Response::builder(Status::OK)
             .with_header(HeaderName::CONTENT_TYPE, "image/svg+xml")
             .unwrap()

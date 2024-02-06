@@ -1,4 +1,4 @@
-//! Simple HTTP client
+//! Simple HTTP client_cli
 
 use std::io::{Empty, Error, ErrorKind, Result};
 use std::time::Duration;
@@ -14,7 +14,7 @@ impl Client {
     pub fn get(&self, _url: &str, _accept: &'static str) -> Result<(String, Empty)> {
         Err(Error::new(
             ErrorKind::Unsupported,
-            "HTTP client is not available. Enable the feature 'http-client'",
+            "HTTP client_cli is not available. Enable the feature 'http-client_cli'",
         ))
     }
 
@@ -28,7 +28,7 @@ impl Client {
     ) -> Result<(String, Empty)> {
         Err(Error::new(
             ErrorKind::Unsupported,
-            "HTTP client is not available. Enable the feature 'http-client'",
+            "HTTP client_cli is not available. Enable the feature 'http-client_cli'",
         ))
     }
 }

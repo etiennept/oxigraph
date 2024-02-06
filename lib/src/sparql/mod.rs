@@ -139,8 +139,8 @@ pub(crate) fn evaluate_query(
 /// Options for SPARQL query evaluation.
 ///
 ///
-/// If the `"http-client"` optional feature is enabled,
-/// a simple HTTP 1.1 client is used to execute [SPARQL 1.1 Federated Query](https://www.w3.org/TR/sparql11-federated-query/) SERVICE calls.
+/// If the `"http-client_cli"` optional feature is enabled,
+/// a simple HTTP 1.1 client_cli is used to execute [SPARQL 1.1 Federated Query](https://www.w3.org/TR/sparql11-federated-query/) SERVICE calls.
 ///
 /// Usage example disabling the federated query support:
 /// ```
@@ -239,7 +239,7 @@ impl QueryOptions {
 
     fn service_handler(&self) -> Arc<dyn ServiceHandler<Error = EvaluationError>> {
         self.service_handler.clone().unwrap_or_else(|| {
-            if cfg!(feature = "http-client") {
+            if cfg!(feature = "http-client_cli") {
                 Arc::new(service::SimpleServiceHandler::new(
                     self.http_timeout,
                     self.http_redirection_limit,

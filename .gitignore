@@ -8,6 +8,7 @@ lib/tests/rocksdb_bc_data
 venv
 .env
 data/
+cli/client
 .htpasswd
 **/docs/_build
 **/docs/build
